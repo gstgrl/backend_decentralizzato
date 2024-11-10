@@ -1,11 +1,14 @@
 from flask import Flask, request, jsonify
-import smtplib, os
+import smtplib
+from dotenv import load_dotenv
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # Permette le richieste dal frontend
+load_dotenv() #Carica nel progetto tutte le variabili salvate nel file .env
 
 #ELGA CONSULTING s.r.l.
 @app.route('/send-email', methods=['POST'])
@@ -49,8 +52,8 @@ def send_email():
 #NAZEDA KASHTA FORM 
 @app.route('/send-email-nazedaKashta', methods=['POST'])
 def send_email_Nazeda_Kashta():
-    EMAIL_ADDRESS = "giustozzi.gabriele.03@gmail.com"
-    EMAIL_PASSWORD = "pahe kcdv buaq msul"
+    EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS_TEST')
+    EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD_TEST')
 
     data = request.json  # Ricevi i dati in formato JSON
     name = data.get('name')
