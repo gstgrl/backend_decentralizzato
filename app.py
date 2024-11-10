@@ -52,8 +52,8 @@ def send_email():
 #NAZEDA KASHTA FORM 
 @app.route('/send-email-nazedaKashta', methods=['POST'])
 def send_email_Nazeda_Kashta():
-    EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS_TEST')
-    EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD_TEST')
+    EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS_NAZEDA_KASHTA')
+    EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD_NAZEDA_KASHTA')
 
     data = request.json  # Ricevi i dati in formato JSON
     name = data.get('name')
