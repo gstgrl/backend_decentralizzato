@@ -13,10 +13,10 @@ load_dotenv() #Carica nel progetto tutte le variabili salvate nel file .env
 #ELGA CONSULTING s.r.l.
 @app.route('/send-email', methods=['POST'])
 def send_email():
-    EMAIL_ADDRESS = "elisanardi@elgaconsulting.it"
-    EMAIL_PASSWORD = "Pizzabuona1!"
-    SMTP_SERVER = "smtps.aruba.it"
-    SMTP_PORT = 465  # Usa la porta 587 per TLS (STARTTLS)
+    EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS_ELGA_CONSULTING')
+    EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD_ELGA_CONSULTING')
+    SMTP_SERVER = os.getenv('SMTP_SERVER_ELGA_CONSULTING')
+    SMTP_PORT = os.getenv('SMTP_PORT_ELGA_CONSULTING')
 
     data = request.json  # Ricevi i dati in formato JSON
     name = data.get('name')
@@ -113,7 +113,7 @@ def send_email_Nazeda_Kashta():
 
     # Configurazione del server SMTP
     msg = MIMEMultipart()
-    msg['From'] = email
+    msg['From'] = EMAIL_ADDRESS
     msg['To'] = EMAIL_ADDRESS  # Può essere il tuo indirizzo o quello del destinatario
     msg['Subject'] = subject
     msg.attach(MIMEText(body, 'html'))
